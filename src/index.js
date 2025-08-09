@@ -5,13 +5,16 @@ import talleresRoute from './src/routes/talleresRoute.js';
 import usuarioRoute from './src/routes/usuarioRoute.js';
 import centrosCulturalesRoute from './src/routes/centrosCulturalesRoute.js';
 import asistenciasRoute from './src/routes/asistenciasRoute.js';
+import cors from 'cors';
 
 dotenv.config();
 
-const app = express();
+const app = express();  // Mueve esta línea arriba, antes de usar app
+
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use('/api/talleres', talleresRoute);
 app.use('/api/usuarios', usuarioRoute);
